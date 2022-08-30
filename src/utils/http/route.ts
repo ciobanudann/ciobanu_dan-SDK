@@ -6,11 +6,13 @@ const getSign = (field: keyof FiltersWithPagination) => {
     case FilterKeysEnum.Include:
     case FilterKeysEnum.Exists:
     case FilterKeysEnum.Equal:
+    case FilterKeysEnum.RegexMatch:
       return FilterSign.Equal;
 
     case FilterKeysEnum.NotMatch:
     case FilterKeysEnum.Exclude:
     case FilterKeysEnum.NotExists:
+    case FilterKeysEnum.RegexNotMatch:
       return FilterSign.NotEqual;
 
     case FilterKeysEnum.Less:
@@ -47,7 +49,11 @@ export const buildQueryPrams = (filters: FiltersWithPagination): string => {
     const sign = getSign(item);
 
     if (!filter?.value) {
-      return '';
+      return `${filter?.field}`;
+    }
+
+    if (item === FilterKeysEnum.RegexMatch || item === FilterKeysEnum.RegexNotMatch) {
+      return `${filter.field}${sign}/${filter.value}/i`;
     }
 
     const value = getValue(filter?.value);
@@ -57,9 +63,13 @@ export const buildQueryPrams = (filters: FiltersWithPagination): string => {
     return `${field}${sign}${value}`;
   });
 
-  return `?${query.join('&')}`;
+  const matchesNotExists = validFilters.find((filter) => filter === FilterKeysEnum.NotExists);
+
+  return `${matchesNotExists ? '?!' : '?'}${query.join('&')}`;
 };
 
 export const routerWithQuery = (route: string, filters?: FiltersWithPagination): string => {
+  console.log(`${route}${buildQueryPrams(filters || {})}`);
+
   return `${route}${buildQueryPrams(filters || {})}`;
 };

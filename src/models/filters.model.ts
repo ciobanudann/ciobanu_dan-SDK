@@ -11,7 +11,7 @@ export enum FilterSign {
 
 export type Filter = {
   field: string;
-  value: string | string[];
+  value?: string | string[];
 };
 
 export enum FilterKeysEnum {
@@ -26,7 +26,9 @@ export enum FilterKeysEnum {
   Greater = 'greater',
   GreaterOrEqual = 'greaterOrEqual',
   Equal = 'equal',
-  Regex = 'regex',
+  RegexMatch = 'regexMatch',
+  RegexNotMatch = 'regexNotMatch',
+
 }
 
 export type Filters = {
