@@ -1,0 +1,117 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:import/typescript"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "import"],
+  "rules": {
+    "@typescript-eslint/no-empty-interface": ["off"],
+    "@typescript-eslint/explicit-module-boundary-types": ["error"],
+    "@typescript-eslint/no-explicit-any": ["error"],
+    "@typescript-eslint/no-non-null-assertion": ["off"],
+    "@typescript-eslint/ban-ts-comment": ["error"],
+    "@typescript-eslint/ban-tslint-comment": ["error"],
+    "@typescript-eslint/ban-types": ["off"],
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-eval": ["error"],
+    "no-multiple-empty-lines": ["error"],
+    "no-implicit-globals": ["error"],
+    "no-duplicate-imports": ["error"],
+    "no-useless-call": ["error"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "curly": ["error", "all"],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": [
+          "import",
+
+          "let",
+          "const",
+          "var",
+
+          "return",
+          "throw",
+          "if",
+          "for",
+          "switch",
+          "continue",
+          "break",
+          "class",
+          "do",
+          "try",
+          "export",
+          "function",
+          "while",
+          "block"
+        ],
+        "next": "*"
+      },
+      {
+        "blankLine": "any",
+        "prev": ["singleline-let", "singleline-const", "singleline-var"],
+        "next": ["singleline-let", "singleline-const", "singleline-var"]
+      },
+      {
+        "blankLine": "any",
+        "prev": "import",
+        "next": "import"
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": [
+          "return",
+          "throw",
+          "if",
+          "for",
+          "switch",
+          "continue",
+          "break",
+          "class",
+          "do",
+          "try",
+          "export",
+          "function",
+          "while",
+          "block"
+        ]
+      }
+    ],
+    "import/default": ["error"],
+    "import/namespace": ["error"],
+    "import/no-absolute-path": ["error"],
+    "import/no-self-import": ["error"],
+    "import/no-cycle": ["error"],
+    "import/no-useless-path-segments": ["error"],
+    "import/export": ["error"],
+    "import/no-deprecated": ["error"],
+    "import/no-extraneous-dependencies": ["error"],
+    "import/no-mutable-exports": ["error"],
+    "import/no-unused-modules": ["error"],
+    "import/no-commonjs": ["error"],
+    "import/no-amd": ["error"],
+    "import/no-nodejs-modules": ["error"],
+    "import/first": ["error"],
+    "import/exports-last": ["error"],
+    "import/no-duplicates": ["error"],
+    // import/max-dependencies
+    // "import/no-namespace": ["error"],
+    "import/newline-after-import": ["error"],
+
+    "import/no-named-default": ["error"],
+    "import/no-anonymous-default-export": ["error"]
+  }
+}
